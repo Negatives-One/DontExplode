@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/jump.wav-c5fd75a18a49850964d57db41a18f864.sample"
+
+[deps]
+
+source_file="res://assets/Audio/GameSFX/Player/jump.wav"
+dest_files=[ "res://.import/jump.wav-c5fd75a18a49850964d57db41a18f864.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

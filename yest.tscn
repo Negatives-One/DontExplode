@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://yest.gd" type="Script" id=3]
+[ext_resource path="res://Camera2D.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 957.152, 6 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 108, 90.6077 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+scale = Vector2( 25.7517, 1.07688 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 60.7677
+margin_right = 72.0
+margin_bottom = 74.7677
+rect_scale = Vector2( 0.3, 0.3 )
+text = "dir"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 57.3799
+margin_top = 60.7677
+margin_right = 97.3799
+margin_bottom = 74.7677
+rect_scale = Vector2( 0.3, 0.3 )
+text = "chao"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 74.8671
+margin_top = 60.7677
+margin_right = 114.867
+margin_bottom = 74.7677
+rect_scale = Vector2( 0.3, 0.3 )
+text = "anim"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 60.7677
+margin_right = 50.0
+margin_bottom = 74.7677
+rect_scale = Vector2( 0.3, 0.3 )
+text = "FPS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 90.6077
+margin_right = 120.0
+margin_bottom = 104.608
+rect_scale = Vector2( 0.3, 0.3 )
+text = "player/colider"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" parent="." instance=ExtResource( 4 )]
+smoothing_enabled = true
+
+[node name="Player" parent="Camera2D" instance=ExtResource( 1 )]

@@ -1,0 +1,236 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://scripts/Menu/Menu.gd" type="Script" id=1]
+[ext_resource path="res://assets/Resources/Buttons/WineButton/WineButtonNormal.png" type="Texture" id=2]
+[ext_resource path="res://assets/Resources/Buttons/WineButton/WineButtonPressed.png" type="Texture" id=3]
+[ext_resource path="res://assets/Resources/Buttons/WineButton/WineButtonMouseOver.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Menu/MenuPlayButton.gd" type="Script" id=5]
+[ext_resource path="res://assets/Resources/Fonts/pixelated.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://scenes/Menus/MainMenu/MenuMissile.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/Resources/Buttons/WineButton/WineButtonNormalQuit.png" type="Texture" id=8]
+[ext_resource path="res://scripts/Menu/MenuMissilePosition.gd" type="Script" id=9]
+[ext_resource path="res://assets/Illumination/feixe.png" type="Texture" id=10]
+[ext_resource path="res://scripts/Menu/LightMenu.gd" type="Script" id=11]
+[ext_resource path="res://assets/Resources/Buttons/WineButton/WineButtonMouseOverQuit.png" type="Texture" id=13]
+[ext_resource path="res://assets/Resources/Buttons/WineButton/WineButtonPressedQuit.png" type="Texture" id=14]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 6 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 6 )
+
+[sub_resource type="CanvasItemMaterial" id=5]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 6 )
+
+[sub_resource type="Environment" id=8]
+glow_enabled = true
+glow_blend_mode = 0
+
+[node name="Menu" type="Node2D"]
+scale = Vector2( 1.5, 1.5 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 3.1455 ],
+"_edit_vertical_guides_": [ 127.95 ]
+}
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = -3.0
+margin_top = -2.0
+margin_right = 89.0
+margin_bottom = 51.0
+color = Color( 0.160784, 0.109804, 0.192157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area2D" parent="." instance=ExtResource( 7 )]
+position = Vector2( 103.972, 48 )
+scale = Vector2( 0.333333, 0.333333 )
+monitoring = false
+monitorable = false
+
+[node name="Area2D2" parent="." instance=ExtResource( 7 )]
+position = Vector2( -9.78661, 4.76837e-07 )
+scale = Vector2( 0.333333, 0.333333 )
+monitoring = false
+monitorable = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 85.3
+margin_bottom = 48.0
+color = Color( 0.160784, 0.109804, 0.192157, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="TextureButton" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -31.5
+margin_top = -15.5
+margin_right = 32.5
+margin_bottom = 16.5
+rect_scale = Vector2( 0.2, 0.2 )
+rect_pivot_offset = Vector2( 30, 15 )
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+stretch_mode = 3
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect/PlayButton"]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.22684
+margin_top = 0.306709
+margin_right = 1.22684
+margin_bottom = 0.306709
+custom_fonts/font = SubResource( 2 )
+text = "PLAY!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ControlsButton" type="TextureButton" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -6.5
+margin_top = 4.5
+margin_right = 57.5
+margin_bottom = 36.5
+rect_scale = Vector2( 0.17, 0.17 )
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+stretch_mode = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect/ControlsButton"]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 4 )
+text = "Controls"
+align = 1
+valign = 1
+
+[node name="QuitButton" type="TextureButton" parent="ColorRect"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -48.5504
+margin_top = 12.2
+margin_right = 15.4496
+margin_bottom = 44.2
+rect_scale = Vector2( 0.14, 0.14 )
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect/QuitButton"]
+material = SubResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 6 )
+text = "Quit"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="ColorRect"]
+anchor_right = 1.0
+margin_left = 2.3
+margin_top = 2.097
+margin_right = 97.0
+margin_bottom = 20.097
+rect_scale = Vector2( 0.45, 0.45 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.560784, 0.243137, 0.0117647, 1 )
+text = "Don't   Explode   Yourself"
+align = 1
+valign = 1
+uppercase = true
+percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+scale = Vector2( 0.333333, 0.333333 )
+color = Color( 0.376471, 0.376471, 0.376471, 1 )
+
+[node name="Position2D" type="Position2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="Timer" type="Timer" parent="Position2D"]
+wait_time = 0.2
+autostart = true
+
+[node name="Position2D2" type="Position2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="Timer" type="Timer" parent="Position2D2"]
+wait_time = 0.2
+autostart = true
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 85.3, 26.9 )
+scale = Vector2( 1.2, 1 )
+texture = ExtResource( 10 )
+color = Color( 1, 0, 0, 0.501961 )
+script = ExtResource( 11 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( -16, 26.9 )
+scale = Vector2( 1.2, 1 )
+texture = ExtResource( 10 )
+color = Color( 0.12549, 0.992157, 0.0509804, 0.501961 )
+script = ExtResource( 11 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
+[connection signal="pressed" from="ColorRect/PlayButton" to="ColorRect/PlayButton" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="ColorRect/ControlsButton" to="." method="_on_ControlsButton_pressed"]
+[connection signal="pressed" from="ColorRect/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="timeout" from="Position2D/Timer" to="Position2D" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Position2D2/Timer" to="Position2D2" method="_on_Timer_timeout"]

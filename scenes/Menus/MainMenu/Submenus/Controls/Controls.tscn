@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/Resources/Fonts/pixelated.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scenes/Menus/MainMenu/Submenus/Controls/ControlsButton.gd" type="Script" id=2]
+[ext_resource path="res://assets/Resources/Buttons/WineButton/WineButtonNormal.png" type="Texture" id=3]
+[ext_resource path="res://assets/Resources/Buttons/WineButton/WineButtonPressed.png" type="Texture" id=4]
+[ext_resource path="res://assets/Resources/Buttons/WineButton/WineButtonMouseOver.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 256.0
+margin_bottom = 144.0
+color = Color( 0.160784, 0.117647, 0.192157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect"]
+margin_left = 66.0
+margin_right = 191.0
+margin_bottom = 93.0
+custom_fonts/font = SubResource( 1 )
+text = "W   -   ENTER   DOORS
+WASD   -   MOVE
+RCLICK   -   SHOOT
+LCLICK   -   CHARGE/STOP    MOVEMENT
+SPACE   BAR   -   JUMP
+
+YOU   CAN   MIX   CHARGES   AND   SHOOTS   
+TO   MAKE   DIFERENT   MOVES"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="TextureButton" parent="ColorRect"]
+margin_left = 96.0
+margin_top = 105.0
+margin_right = 221.0
+margin_bottom = 137.0
+rect_pivot_offset = Vector2( 32, 16 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect/Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -62.0
+rect_pivot_offset = Vector2( 32, 16 )
+custom_fonts/font = SubResource( 2 )
+text = "Back"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="ColorRect/Button" to="ColorRect/Button" method="_on_Button_pressed"]

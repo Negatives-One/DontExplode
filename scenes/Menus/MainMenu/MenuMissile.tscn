@@ -1,0 +1,218 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://assets/Projectiles/PlayerProjectiles/missile.png" type="Texture" id=1]
+[ext_resource path="res://assets/Illumination/DegradeLuz.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Area2D
+
+export var speed = 100
+export var steer_force = 10
+export var grouth = 1
+var spawn = true
+var velocity = Vector2.ZERO
+var acceleration = Vector2.ZERO
+#onready var player = $\"../KinematicBody2D\"
+onready var target = $\"../Position2D\"
+var explosao = preload(\"res://scenes/Effects/ParticleExplosion.tscn\")
+
+func start(_transform, _target):
+	global_transform = _transform
+	velocity = transform.x * speed
+	target = _target
+
+func seek():
+	var steer = Vector2.ZERO
+	if target:
+		var desired = (target.position - position).normalized() * speed
+		steer = (desired - velocity).normalized() * steer_force
+	return steer
+
+func _physics_process(delta):
+	#if target == player:
+		#player.lock()
+	#else:
+		#if is_instance_valid(target) == false:
+			#pass
+		#else:
+			#target.lock()
+	#if $troca.is_colliding():
+		#var alvo = $troca.get_collider()
+		#if alvo.is_in_group(\"explodivel\"):
+			#if alvo.is_in_group('Inimigo'):
+				#target.unlock()
+			#target = alvo
+	#if is_instance_valid(target) == false:
+		#target = player
+	if spawn == true:
+		#$explode.start()
+		spawn = false
+	else:
+		$troca.enabled = true
+	var colider = $RayCast2D.get_collider()
+	acceleration += seek()
+	velocity += acceleration * delta
+	velocity = velocity.clamped(speed)
+	rotation = velocity.angle()
+	if colider == target:
+		global_position += velocity * delta * grouth
+		grouth += 0.012
+	else:
+		global_position += velocity * delta * grouth
+		grouth = lerp(grouth, 1, 0.05)
+
+func explode():
+	var explode = explosao.instance()
+	get_parent().call_deferred(\"add_child\", explode)
+	explode.position = self.position
+	queue_free()
+
+#func _on_explode_timeout():
+#	target.unlock()
+#	explode()
+
+
+func _on_Area2D_body_entered(_body):
+	#if body == player:
+		#player.hurt()
+		#player.unlock()
+	#target.hitOrien = self.position - target.position 
+	#target.hitOrien = Vector2(target.hitOrien[0], target.hitOrien[1])
+	#if body.is_in_group(\"explodivel\"):
+		#body.hit = true
+		#explode()
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1.88873, 0.96705 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.00333333, 0.743333, 1 )
+colors = PoolColorArray( 0.803922, 0.803922, 0.803922, 0.784314, 0.305882, 0.301961, 0.301961, 0.54902, 0.26, 0.26, 0.26, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="Curve" id=17]
+min_value = -200.0
+max_value = 50.0
+_data = [ Vector2( 0, 50 ), 0.0, 0.0, 0, 0, Vector2( 1, -200 ), 639.131, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=18]
+curve = SubResource( 17 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.848297, 0.609091 ), -1.77727, -1.77727, 0, 0, Vector2( 1, 0.0727272 ), 0.0638339, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+render_priority = 10
+lifetime_randomness = 0.3
+emission_shape = 2
+emission_box_extents = Vector3( 3.5, 3.8, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, -100, 0 )
+initial_velocity = 25.0
+initial_velocity_random = 1.0
+angular_velocity = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 50.0
+linear_accel_random = 1.0
+linear_accel_curve = SubResource( 18 )
+scale = 1.5
+scale_random = 1.0
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
+
+[sub_resource type="CanvasItemMaterial" id=15]
+light_mode = 1
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.401408, 0.767606, 1 )
+colors = PoolColorArray( 0.957031, 0.900021, 0.0448608, 1, 0.975134, 0.456534, 0.041718, 1, 0.989151, 0.113156, 0.0392846, 1, 0.992157, 0.0392157, 0.0392157, 0 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0, 1 ), 0.0, -0.220687, 0, 0, Vector2( 1, 0.4208 ), -1.71728, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=16]
+emission_shape = 2
+emission_box_extents = Vector3( 2, 3.8, 1 )
+gravity = Vector3( -17.813, 0, 0 )
+angular_velocity = 1.05
+scale_curve = SubResource( 11 )
+color_ramp = SubResource( 9 )
+
+[sub_resource type="CircleShape2D" id=13]
+radius = 32.5
+
+[node name="Area2D" type="Area2D"]
+script = SubResource( 1 )
+speed = 150
+steer_force = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.153137, -0.255236 )
+shape = SubResource( 2 )
+
+[node name="Fumaca" type="Particles2D" parent="."]
+position = Vector2( -11, -0.5 )
+scale = Vector2( 0.5, 0.5 )
+amount = 2000
+lifetime = 1.5
+speed_scale = 0.5
+local_coords = false
+process_material = SubResource( 14 )
+
+[node name="Fogo" type="Particles2D" parent="."]
+material = SubResource( 15 )
+position = Vector2( -7.19588, -0.341766 )
+scale = Vector2( 0.5, 0.5 )
+amount = 300
+speed_scale = 5.0
+process_material = SubResource( 16 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = -1.5708
+scale = Vector2( 1, 100 )
+enabled = true
+collision_mask = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 88, 106, 38, 29 )
+
+[node name="explode" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="explosao" type="Area2D" parent="."]
+visible = false
+
+[node name="areaExplosao" type="CollisionShape2D" parent="explosao"]
+shape = SubResource( 13 )
+disabled = true
+
+[node name="troca" type="RayCast2D" parent="."]
+rotation = -1.5708
+cast_to = Vector2( 0, 60 )
+collision_mask = 2
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 2 )
+texture_scale = 0.3
+color = Color( 0.976471, 0.654902, 0.243137, 1 )
+shadow_enabled = true
+[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="explosao" to="." method="_on_explosao_body_entered"]
