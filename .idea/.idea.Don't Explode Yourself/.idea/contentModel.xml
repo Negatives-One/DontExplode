@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Bruno\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Bruno\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_Don't Explode Yourself.810061473.00" t="ExcludeRecursive" />
+    <e p="E:\Users\Bruno\Documents\Don't Explode Yourself" t="IncludeRecursive">
+      <e p=".mono\temp\bin" t="ExcludeRecursive" />
+      <e p=".mono\temp\obj" t="ExcludeRecursive" />
+      <e p="Don't Explode Yourself.csproj" t="IncludeRecursive" />
+      <e p="Don't Explode Yourself.sln" t="IncludeFlat" />
+      <e p="KinematicBody2D.cs" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Properties" t="Include">
+        <e p="AssemblyInfo.cs" t="Include" />
+      </e>
+    </e>
+  </component>
+</project>
