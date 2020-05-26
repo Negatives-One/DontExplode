@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Alarm_Loop_01.wav-cdcc4876ef98d0a8d357c47b512bd2a9.sample"
+
+[deps]
+
+source_file="res://aud/Sci-Fi Sound Library/Sci-Fi Sound Library/Wav/Alarm_Loop_01.wav"
+dest_files=[ "res://.import/Alarm_Loop_01.wav-cdcc4876ef98d0a8d357c47b512bd2a9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

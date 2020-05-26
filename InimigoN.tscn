@@ -1,0 +1,197 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_idle_01.png" type="Texture" id=1]
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_idle_02.png" type="Texture" id=2]
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_idle_03.png" type="Texture" id=3]
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_idle_04.png" type="Texture" id=4]
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_idle_05.png" type="Texture" id=5]
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_idle_06.png" type="Texture" id=6]
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_attack_01.png" type="Texture" id=7]
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_attack_02.png" type="Texture" id=8]
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_attack_03.png" type="Texture" id=9]
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_attack_04.png" type="Texture" id=10]
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_attack_05.png" type="Texture" id=11]
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_attack_06.png" type="Texture" id=12]
+[ext_resource path="res://microFantasy.v0.4/characters/dark_mage/dark_mage_attack_07.png" type="Texture" id=13]
+[ext_resource path="res://saidaFogo.gd" type="Script" id=14]
+[ext_resource path="res://wills_pixel_explosions_sample/textures/Missile_Lock_01.png" type="Texture" id=15]
+[ext_resource path="res://wills_pixel_explosions_sample/textures/Missile_Lock_02.png" type="Texture" id=16]
+
+[sub_resource type="GDScript" id=19]
+script/source = "extends KinematicBody2D
+
+onready var player = $\"../../Camera2D/KinematicBody2D\"
+var Laser = preload(\"res://Laser.tscn\")
+var hit = false
+var hitOrien
+var frame = 'a'
+var anim
+var only = true
+var pAtacar = true
+var changed = false
+
+func _physics_process(delta):
+	if hit == true:
+		morte()
+	anim = $AnimatedSprite.get_animation()
+	#frame = $AnimatedSprite.get_frame()
+
+	#print(anim, frame)
+	only = true
+	if pAtacar == true:
+		radar()
+		
+	if anim == 'attack' and frame == 'ok':
+		$AnimatedSprite.get_frame()
+		new_fireBall()
+		$Timer.start()
+		pAtacar = false
+
+	if player.position.x < self.position.x:
+		$AnimatedSprite.flip_h = true
+		$CollisionShape2D.position.x = 2
+	else:
+		$AnimatedSprite.flip_h = false
+		$CollisionShape2D.position.x = -2
+	frame = 'a'
+
+
+func new_fireBall():
+	var new_Laser = Laser.instance()
+	get_parent().call_deferred('add_child', new_Laser)
+	new_Laser.position = $\"AnimatedSprite/Position2D\".global_position
+
+
+func radar():
+	var a = $Area2D2.get_overlapping_bodies()
+	if a.has(player) == true:
+		if changed == false:
+			$Area2D2/CollisionShape2D.apply_scale(Vector2(5,5))
+			var target = $\"../../Camera2D\"
+			var source = self
+			$\"..\".remove_child(source)
+			target.add_child(source)
+			changed = true
+		$AnimatedSprite.play('attack')
+
+func _on_Timer_timeout():
+	pAtacar = true
+	only = true
+
+
+
+func _on_AnimatedSprite_animation_finished():
+	
+	if pAtacar == false:
+		$AnimatedSprite.play('idle')
+
+
+func _on_AnimatedSprite_frame_changed():
+	var name = $AnimatedSprite.get_animation()
+	var socorro = $AnimatedSprite.get_frame()
+	if name == 'attack' and socorro == 3:
+		frame = 'ok'
+
+func morte():
+	$\"../..\".cont += -1
+	queue_free()
+	pass
+
+func _on_Area2D_body_entered(body):
+	if body == player:
+		var x = player.global_position - self.global_position
+		player.hitOrien = Vector2(-x.x, -x.y)
+		player.knockback(2, 0)
+
+func lock():
+	$CollisionShape2D/AnimatedSprite2.visible = true
+func unlock():
+	$CollisionShape2D/AnimatedSprite2.visible = false
+"
+
+[sub_resource type="SpriteFrames" id=20]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "attack",
+"speed": 10.0
+} ]
+
+[sub_resource type="CircleShape2D" id=21]
+radius = 200.0
+
+[sub_resource type="CapsuleShape2D" id=22]
+radius = 4.82162
+height = 3.13266
+
+[sub_resource type="CapsuleShape2D" id=23]
+radius = 5.44057
+height = 3.13266
+
+[sub_resource type="SpriteFrames" id=24]
+animations = [ {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "lock",
+"speed": 8.0
+} ]
+
+[node name="Inimigo" type="KinematicBody2D" groups=[
+"explodivel",
+"Inimigo",
+]]
+collision_layer = 3
+collision_mask = 3
+script = SubResource( 19 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 20 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="Position2D" type="Position2D" parent="AnimatedSprite"]
+position = Vector2( 4, 4.5 )
+script = ExtResource( 14 )
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource( 21 )
+
+[node name="TempoAtaque" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2, 1.5 )
+shape = SubResource( 22 )
+
+[node name="Area2D" type="Area2D" parent="CollisionShape2D"]
+position = Vector2( 2, -1.5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Area2D"]
+position = Vector2( -2, 1.5 )
+shape = SubResource( 23 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="CollisionShape2D"]
+visible = false
+position = Vector2( 0.407984, 0.941092 )
+frames = SubResource( 24 )
+animation = "lock"
+frame = 1
+playing = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]
+[connection signal="timeout" from="TempoAtaque" to="." method="_on_TempoAtaque_timeout"]
+[connection signal="body_entered" from="CollisionShape2D/Area2D" to="." method="_on_Area2D_body_entered"]

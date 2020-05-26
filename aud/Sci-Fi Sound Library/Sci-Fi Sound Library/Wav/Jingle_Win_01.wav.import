@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Jingle_Win_01.wav-464982950e64c707de62251950358f25.sample"
+
+[deps]
+
+source_file="res://aud/Sci-Fi Sound Library/Sci-Fi Sound Library/Wav/Jingle_Win_01.wav"
+dest_files=[ "res://.import/Jingle_Win_01.wav-464982950e64c707de62251950358f25.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

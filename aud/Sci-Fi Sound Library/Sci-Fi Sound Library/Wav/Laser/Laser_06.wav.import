@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Laser_06.wav-cae8372c86cb15e8c5d0b5972468bad4.sample"
+
+[deps]
+
+source_file="res://aud/Sci-Fi Sound Library/Sci-Fi Sound Library/Wav/Laser/Laser_06.wav"
+dest_files=[ "res://.import/Laser_06.wav-cae8372c86cb15e8c5d0b5972468bad4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

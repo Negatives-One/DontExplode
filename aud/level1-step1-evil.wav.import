@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/level1-step1-evil.wav-b0eb2c52c624279ba9af2ce5c04e3a9b.sample"
+
+[deps]
+
+source_file="res://aud/level1-step1-evil.wav"
+dest_files=[ "res://.import/level1-step1-evil.wav-b0eb2c52c624279ba9af2ce5c04e3a9b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

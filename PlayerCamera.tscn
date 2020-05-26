@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Camera2D.gd" type="Script" id=1]
+[ext_resource path="res://Personagem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Position2D.gd" type="Script" id=3]
+[ext_resource path="res://Position2D3.gd" type="Script" id=4]
+[ext_resource path="res://Position2D4.gd" type="Script" id=5]
+[ext_resource path="res://Position2D2.gd" type="Script" id=6]
+
+[node name="Camera2D" type="Camera2D"]
+current = true
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+script = ExtResource( 1 )
+zoom_offset = 0.4
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 60, 570 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 116.525, 502.461 )
+script = ExtResource( 3 )
+
+[node name="Position2D3" type="Position2D" parent="."]
+position = Vector2( 116.525, 502.461 )
+script = ExtResource( 4 )
+
+[node name="Position2D4" type="Position2D" parent="."]
+position = Vector2( 116.525, 502.461 )
+script = ExtResource( 5 )
+
+[node name="Position2D2" type="Position2D" parent="."]
+position = Vector2( -215.072, 20.3218 )
+script = ExtResource( 6 )

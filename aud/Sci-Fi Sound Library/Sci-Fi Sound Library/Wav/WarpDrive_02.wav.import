@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/WarpDrive_02.wav-c089ed3796943a08f6d0d15c3ea31cdc.sample"
+
+[deps]
+
+source_file="res://aud/Sci-Fi Sound Library/Sci-Fi Sound Library/Wav/WarpDrive_02.wav"
+dest_files=[ "res://.import/WarpDrive_02.wav-c089ed3796943a08f6d0d15c3ea31cdc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

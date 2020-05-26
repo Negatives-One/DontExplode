@@ -1,0 +1,265 @@
+[gd_scene load_steps=53 format=2]
+
+[ext_resource path="res://Personagem.gd" type="Script" id=1]
+[ext_resource path="res://microFantasy.v0.4/portal_01.png" type="Texture" id=2]
+[ext_resource path="res://microFantasy.v0.4/portal_02.png" type="Texture" id=3]
+[ext_resource path="res://microFantasy.v0.4/portal_03.png" type="Texture" id=4]
+[ext_resource path="res://microFantasy.v0.4/portal_04.png" type="Texture" id=5]
+[ext_resource path="res://microFantasy.v0.4/portal_05.png" type="Texture" id=6]
+[ext_resource path="res://microFantasy.v0.4/portal_06.png" type="Texture" id=7]
+[ext_resource path="res://wills_pixel_explosions_sample/barraP.png" type="Texture" id=8]
+[ext_resource path="res://wills_pixel_explosions_sample/barraBlank.png" type="Texture" id=9]
+[ext_resource path="res://wills_pixel_explosions_sample/barraV.png" type="Texture" id=10]
+[ext_resource path="res://wills_pixel_explosions_sample/barraM.png" type="Texture" id=11]
+[ext_resource path="res://wills_pixel_explosions_sample/barraMP.png" type="Texture" id=12]
+[ext_resource path="res://microFantasy.v0.4/pixelated.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://microFantasy.v0.4/Botão/check.png" type="Texture" id=14]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_idle_01.png" type="Texture" id=15]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_idle_02.png" type="Texture" id=16]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_idle_03.png" type="Texture" id=17]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_idle_04.png" type="Texture" id=18]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_jump_01.png" type="Texture" id=19]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_jump_02.png" type="Texture" id=20]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_jump_03.png" type="Texture" id=21]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_jump_04.png" type="Texture" id=22]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_jump_05.png" type="Texture" id=23]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_jump_06.png" type="Texture" id=24]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_jump_07.png" type="Texture" id=25]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_jump_08.png" type="Texture" id=26]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_jump_09.png" type="Texture" id=27]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_run_01.png" type="Texture" id=28]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_run_02.png" type="Texture" id=29]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_run_03.png" type="Texture" id=30]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_run_04.png" type="Texture" id=31]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_run_05.png" type="Texture" id=32]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_run_06.png" type="Texture" id=33]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_run_07.png" type="Texture" id=34]
+[ext_resource path="res://microFantasy.v0.4/characters/basic/basic_run_08.png" type="Texture" id=35]
+[ext_resource path="res://arma.png" type="Texture" id=36]
+[ext_resource path="res://Sprite.gd" type="Script" id=37]
+[ext_resource path="res://wills_pixel_explosions_sample/textures/Missile_Lock_01.png" type="Texture" id=38]
+[ext_resource path="res://wills_pixel_explosions_sample/textures/Missile_Lock_02.png" type="Texture" id=39]
+[ext_resource path="res://aud/launches/launches/rlaunch.wav" type="AudioStream" id=40]
+[ext_resource path="res://aud/door.wav" type="AudioStream" id=41]
+[ext_resource path="res://aud/jump.wav" type="AudioStream" id=42]
+[ext_resource path="res://aud/death.wav" type="AudioStream" id=43]
+[ext_resource path="res://aud/stop.wav" type="AudioStream" id=44]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 3.90615
+height = 1.25474
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="DynamicFont" id=3]
+size = 8
+outline_size = 1
+outline_color = Color( 0.6, 0.0431373, 0.0431373, 1 )
+font_data = ExtResource( 13 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.980392 )
+colors = PoolColorArray( 0.117693, 0.00135803, 0.347656, 1, 0.382483, 0.21759, 0.898438, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_align_y = true
+flag_rotate_y = true
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 82.4
+linear_accel_random = 1.0
+radial_accel = 5.5
+radial_accel_random = 1.0
+color_ramp = SubResource( 5 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "idle",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "morto",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ],
+"loop": false,
+"name": "jump",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ) ],
+"loop": false,
+"name": "fall",
+"speed": 10.0
+} ]
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 38 ), ExtResource( 39 ) ],
+"loop": true,
+"name": "lock",
+"speed": 8.0
+} ]
+
+[node name="KinematicBody2D" type="KinematicBody2D" groups=[
+"explodivel",
+]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.19, 0.53 )
+shape = SubResource( 1 )
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="raycasts" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="raycasts"]
+position = Vector2( 0, 5.1 )
+enabled = true
+cast_to = Vector2( 0, 2 )
+
+[node name="RayCast2D2" type="RayCast2D" parent="raycasts"]
+position = Vector2( 2, 5.1 )
+enabled = true
+cast_to = Vector2( 0, 2 )
+
+[node name="RayCast2D3" type="RayCast2D" parent="raycasts"]
+position = Vector2( -2, 5.1 )
+enabled = true
+cast_to = Vector2( 0, 2 )
+
+[node name="knockback" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Portal" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 3, 3 )
+frames = SubResource( 2 )
+frame = 5
+playing = true
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_left = -16.0
+margin_top = -12.0
+margin_right = 16.0
+margin_bottom = -7.0
+value = 100.0
+texture_under = ExtResource( 8 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
+
+[node name="TextureProgress2" type="TextureProgress" parent="."]
+margin_left = -15.0
+margin_top = -8.0
+margin_right = 15.0
+margin_bottom = -7.0
+max_value = 4.0
+step = 0.0
+value = 4.0
+texture_under = ExtResource( 11 )
+texture_progress = ExtResource( 12 )
+fill_mode = 1
+
+[node name="Label" type="Label" parent="."]
+margin_left = 17.7361
+margin_top = -14.0
+margin_right = 90.7361
+margin_bottom = -5.0
+custom_fonts/font = SubResource( 3 )
+text = "1"
+
+[node name="check" type="Sprite" parent="."]
+visible = false
+position = Vector2( 21, -10 )
+texture = ExtResource( 14 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 200
+lifetime = 1.3
+speed_scale = 3.0
+process_material = SubResource( 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 7 )
+animation = "idle"
+frame = 3
+playing = true
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 1.5 )
+texture = ExtResource( 36 )
+script = ExtResource( 37 )
+
+[node name="Position2D" type="Position2D" parent="Sprite"]
+position = Vector2( 6.421, 0 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Sprite"]
+position = Vector2( 6, 0 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 6 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 8 )
+animation = "lock"
+frame = 1
+playing = true
+
+[node name="stopped" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="TempoMorte" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="audios" type="Node2D" parent="."]
+
+[node name="Rlaunch" type="AudioStreamPlayer" parent="audios"]
+stream = ExtResource( 40 )
+volume_db = -5.0
+
+[node name="porta" type="AudioStreamPlayer" parent="audios"]
+stream = ExtResource( 41 )
+
+[node name="jump" type="AudioStreamPlayer" parent="audios"]
+stream = ExtResource( 42 )
+
+[node name="death" type="AudioStreamPlayer" parent="audios"]
+stream = ExtResource( 43 )
+
+[node name="stop" type="AudioStreamPlayer" parent="audios"]
+stream = ExtResource( 44 )
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="knockback" to="." method="_on_knockback_timeout"]
+[connection signal="timeout" from="stopped" to="." method="_on_stopped_timeout"]
+[connection signal="timeout" from="TempoMorte" to="." method="_on_TempoMorte_timeout"]

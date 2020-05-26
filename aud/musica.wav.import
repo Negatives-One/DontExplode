@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/musica.wav-26ac876405eba082ae39c5ed3c8780a9.sample"
+
+[deps]
+
+source_file="res://aud/musica.wav"
+dest_files=[ "res://.import/musica.wav-26ac876405eba082ae39c5ed3c8780a9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

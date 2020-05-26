@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SpaceShip_Engine_Small_Loop_00.wav-7b5f7502c75b53e8b354e56dba8cffdf.sample"
+
+[deps]
+
+source_file="res://aud/Sci-Fi Sound Library/Sci-Fi Sound Library/Wav/SpaceShip_Engine_Small_Loop_00.wav"
+dest_files=[ "res://.import/SpaceShip_Engine_Small_Loop_00.wav-7b5f7502c75b53e8b354e56dba8cffdf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
