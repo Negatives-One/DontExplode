@@ -11,6 +11,9 @@ func _ready():
 	$AnimationPlayer.play("Run")
 	pass
 
+func _process(delta):
+	pass
+
 func _physics_process(delta):
 	motion.y += 8;
 	if is_on_floor():
@@ -26,6 +29,3 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_up") and is_on_floor():
 		motion.y += -150
 	move_and_slide(motion, Up)
-	
-func ChangeAnimation(SomeState):
-	stateMachine.travel("SomeState")

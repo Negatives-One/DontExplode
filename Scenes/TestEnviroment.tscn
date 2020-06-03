@@ -9,7 +9,7 @@ extents = Vector2( 32, 32 )
 [node name="Node2D" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 147.087, 135.009 )
+position = Vector2( 279.755, 232.479 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
 scale = Vector2( 10, 0.5 )
@@ -20,4 +20,4 @@ scale = Vector2( 10, 0.5 )
 shape = SubResource( 1 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 135.056, 50.2572 )
+position = Vector2( 269.529, 52.9647 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Assets/Images/Player/eyes.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Images/Player/FaceWire.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Assets/Images/Player/WhiteFoot.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Images/Player/WhiteTest.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Images/Player/FootPart.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Scripts/AnimationScript.gd" type="Script" id=14]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -260,7 +261,7 @@ tracks/5/keys = {
 "values": [ Color( 0.00392157, 0.466667, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=6]
 resource_name = "TurnGreen"
 length = 0.001
 tracks/0/type = "value"
@@ -336,7 +337,7 @@ tracks/5/keys = {
 "values": [ Color( 0.356863, 0.486275, 0.388235, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "TurnOrange"
 length = 0.001
 tracks/0/type = "value"
@@ -412,8 +413,7 @@ tracks/5/keys = {
 "values": [ Color( 0.607843, 0.607843, 0.607843, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "TurnRed"
+[sub_resource type="Animation" id=8]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Head/HeadCapsule:self_modulate")
@@ -488,8 +488,7 @@ tracks/5/keys = {
 "values": [ Color( 0.34902, 0, 0.862745, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "TurnWhite"
+[sub_resource type="Animation" id=9]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Head/HeadCapsule:self_modulate")
@@ -564,48 +563,52 @@ tracks/5/keys = {
 "values": [ Color( 0.431373, 0.431373, 0.431373, 1 ) ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "Run"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-switch_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
 switch_mode = 1
 
-[sub_resource type="AnimationNodeStateMachine" id=13]
-states/Idle/node = SubResource( 9 )
-states/Idle/position = Vector2( 113, 77 )
-states/Run/node = SubResource( 10 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachine" id=14]
+states/Idle/node = SubResource( 10 )
+states/Idle/position = Vector2( 112, 77 )
+states/Run/node = SubResource( 11 )
 states/Run/position = Vector2( 337, 59 )
-transitions = [ "Idle", "Run", SubResource( 11 ), "Run", "Idle", SubResource( 12 ) ]
+transitions = [ "Idle", "Run", SubResource( 12 ), "Run", "Idle", SubResource( 13 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
-
-[sub_resource type="AnimationNodeAnimation" id=15]
-animation = "BlueToWhite"
-
-[sub_resource type="AnimationNodeAnimation" id=20]
-animation = "TurnBlue"
-
-[sub_resource type="AnimationNodeAnimation" id=21]
-animation = "TurnGreen"
-
-[sub_resource type="AnimationNodeAnimation" id=22]
-animation = "TurnOrange"
-
-[sub_resource type="AnimationNodeAnimation" id=23]
-animation = "TurnRed"
-
-[sub_resource type="AnimationNodeAnimation" id=24]
-animation = "TurnWhite"
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
 
 [sub_resource type="AnimationNodeAnimation" id=16]
+animation = "BlueToWhite"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "TurnBlue"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "TurnGreen"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "TurnOrange"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "TurnRed"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "TurnWhite"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "WhiteToBlue"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 
@@ -623,29 +626,25 @@ animation = "WhiteToBlue"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
-
-[sub_resource type="AnimationNodeStateMachine" id=17]
-states/BlueToWhite/node = SubResource( 15 )
+[sub_resource type="AnimationNodeStateMachine" id=33]
+states/BlueToWhite/node = SubResource( 16 )
 states/BlueToWhite/position = Vector2( 174, 84 )
-states/TurnBlue/node = SubResource( 20 )
+states/TurnBlue/node = SubResource( 17 )
 states/TurnBlue/position = Vector2( 408, 273.664 )
-states/TurnGreen/node = SubResource( 21 )
+states/TurnGreen/node = SubResource( 18 )
 states/TurnGreen/position = Vector2( 82, 169.664 )
-states/TurnOrange/node = SubResource( 22 )
+states/TurnOrange/node = SubResource( 19 )
 states/TurnOrange/position = Vector2( 295, 169.664 )
-states/TurnRed/node = SubResource( 23 )
+states/TurnRed/node = SubResource( 20 )
 states/TurnRed/position = Vector2( 506, 169.664 )
-states/TurnWhite/node = SubResource( 24 )
+states/TurnWhite/node = SubResource( 21 )
 states/TurnWhite/position = Vector2( 722, 169.664 )
-states/WhiteToBlue/node = SubResource( 16 )
+states/WhiteToBlue/node = SubResource( 22 )
 states/WhiteToBlue/position = Vector2( 426, 84 )
-transitions = [ "TurnGreen", "TurnOrange", SubResource( 25 ), "TurnOrange", "TurnRed", SubResource( 26 ), "TurnRed", "TurnWhite", SubResource( 27 ), "TurnWhite", "TurnBlue", SubResource( 28 ), "TurnBlue", "TurnGreen", SubResource( 29 ), "TurnBlue", "TurnWhite", SubResource( 30 ), "TurnWhite", "TurnRed", SubResource( 31 ), "TurnRed", "TurnOrange", SubResource( 32 ), "TurnOrange", "TurnGreen", SubResource( 33 ), "TurnGreen", "TurnBlue", SubResource( 34 ) ]
+transitions = [ "TurnGreen", "TurnOrange", SubResource( 23 ), "TurnOrange", "TurnRed", SubResource( 24 ), "TurnRed", "TurnWhite", SubResource( 25 ), "TurnWhite", "TurnBlue", SubResource( 26 ), "TurnBlue", "TurnGreen", SubResource( 27 ), "TurnBlue", "TurnWhite", SubResource( 28 ), "TurnWhite", "TurnRed", SubResource( 29 ), "TurnRed", "TurnOrange", SubResource( 30 ), "TurnOrange", "TurnGreen", SubResource( 31 ), "TurnGreen", "TurnBlue", SubResource( 32 ) ]
 graph_offset = Vector2( 0, 132.664 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=34]
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 7 )
@@ -661,16 +660,17 @@ scale = Vector2( 5.08647, 3.22054 )
 texture = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
+position = Vector2( 0, 0.686918 )
 z_index = 5
-polygon = PoolVector2Array( 8, -4, 8, 4, 5, 7, 5, 14, -4, 14, -4, 7, -5, 7, -8, 4, -8, -4, -5, -7, 5, -7 )
+polygon = PoolVector2Array( 8, -4, 8, 4, 5, 7, 5, 13.3131, -4, 13.3131, -4, 7, -5, 7, -8, 4, -8, -4, -5, -7, 5, -7 )
 
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Legs" type="Node2D" parent="Body"]
 
 [node name="LLeg" type="Line2D" parent="Body/Legs"]
-points = PoolVector2Array( -3, 6, -3, 10 )
+z_index = 1
+points = PoolVector2Array( -3, 6.91589, -3, 10 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 6 )
@@ -680,7 +680,7 @@ end_cap_mode = 2
 
 [node name="RLeg" type="Line2D" parent="Body/Legs"]
 position = Vector2( 6, 0 )
-points = PoolVector2Array( -3, 6, -3, 10 )
+points = PoolVector2Array( -3, 6.91589, -3, 10 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 6 )
@@ -691,7 +691,9 @@ end_cap_mode = 2
 [node name="Foots" type="Node2D" parent="Body"]
 
 [node name="LFoot" type="Sprite" parent="Body/Foots"]
+self_modulate = Color( 0, 0.435294, 0.698039, 1 )
 position = Vector2( -2.5, 12 )
+z_index = 1
 texture = ExtResource( 11 )
 region_rect = Rect2( 21, 23, 6, 3 )
 
@@ -699,6 +701,7 @@ region_rect = Rect2( 21, 23, 6, 3 )
 texture = ExtResource( 13 )
 
 [node name="RFoot" type="Sprite" parent="Body/Foots"]
+self_modulate = Color( 0, 0.435294, 0.698039, 1 )
 position = Vector2( 3.5, 12 )
 texture = ExtResource( 11 )
 region_rect = Rect2( 21, 23, 6, 3 )
@@ -714,11 +717,14 @@ cast_to = Vector2( 0, 12 )
 [node name="Head" type="Node2D" parent="Body"]
 
 [node name="HeadCapsule" type="Sprite" parent="Body/Head"]
+self_modulate = Color( 0, 0.435294, 0.698039, 1 )
+position = Vector2( 0, 0.727212 )
+z_index = 1
 texture = ExtResource( 12 )
 region_rect = Rect2( 4, 4, 17, 15 )
 
 [node name="Eyes" type="Sprite" parent="Body/Head/HeadCapsule"]
-modulate = Color( 1, 0.74902, 0, 1 )
+modulate = Color( 0.00392157, 0.466667, 0, 1 )
 material = SubResource( 2 )
 texture = ExtResource( 1 )
 
@@ -730,11 +736,11 @@ texture = ExtResource( 1 )
 texture = ExtResource( 10 )
 
 [node name="FaceWire" type="Sprite" parent="Body/Head/HeadCapsule"]
-self_modulate = Color( 0.431373, 0.431373, 0.431373, 1 )
+self_modulate = Color( 0.352941, 0.443137, 0.541176, 1 )
 texture = ExtResource( 2 )
 
 [node name="FacePanel" type="Sprite" parent="Body/Head/HeadCapsule"]
-self_modulate = Color( 0.623529, 0.623529, 0.623529, 1 )
+self_modulate = Color( 0, 0.0941176, 0.87451, 1 )
 texture = ExtResource( 8 )
 
 [node name="Sclera" type="Sprite" parent="Body/Head/HeadCapsule"]
@@ -748,18 +754,20 @@ anims/Idle = SubResource( 3 )
 anims/Jump = SubResource( 4 )
 anims/Run = ExtResource( 4 )
 anims/TurnBlue = SubResource( 5 )
-anims/TurnGreen = SubResource( 19 )
-anims/TurnOrange = SubResource( 8 )
-anims/TurnRed = SubResource( 6 )
-anims/TurnWhite = SubResource( 7 )
+anims/TurnGreen = SubResource( 6 )
+anims/TurnOrange = SubResource( 7 )
+anims/TurnRed = SubResource( 8 )
+anims/TurnWhite = SubResource( 9 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 13 )
-anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 14 )
-
-[node name="ColorTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 17 )
+tree_root = SubResource( 14 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 18 )
+parameters/playback = SubResource( 15 )
+script = ExtResource( 14 )
+
+[node name="ColorTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 33 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 34 )
