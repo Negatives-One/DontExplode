@@ -8,16 +8,32 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Assets/Scripts/player.gd"
+} ]
 _global_script_class_icons={
-
+"Player": ""
 }
 
 [application]
 
 config/name="DEY"
+run/main_scene="res://Scenes/player.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=256
+window/size/height=150
+window/size/test_width=1024
+window/size/test_height=600
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
