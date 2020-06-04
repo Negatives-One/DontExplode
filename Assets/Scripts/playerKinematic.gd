@@ -4,11 +4,8 @@ class_name Player
 
 var motion = Vector2(0,0);
 var Up = Vector2(0,-1)
-var stateMachine
 
 func _ready():
-	stateMachine  = $AnimationTree
-	$AnimationPlayer.play("Run")
 	pass
 
 func _process(delta):

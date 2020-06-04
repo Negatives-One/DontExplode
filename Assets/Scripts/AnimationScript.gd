@@ -10,7 +10,7 @@ func _ready():
 	pass
 
 func _process(_delta):
-	if player.motion.x == 0 and player.is_on_floor():
+	if player.velocity.x == 0:
 		playback.travel("Idle")
-	elif player.motion.x != 0 and player.is_on_floor():
+	elif player.velocity.x != 0:
 		playback.travel("Run")
