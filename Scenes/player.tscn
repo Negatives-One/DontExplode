@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Assets/Images/Player/eyes.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Images/Player/FaceWire.png" type="Texture" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/Images/Player/Animations/player.tres" type="Animation" id=4]
 [ext_resource path="res://Assets/Images/Player/HeadContorno.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Images/Player/Leg.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Scripts/playerRigid.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Scripts/playerKinematic.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Images/Player/WhiteFace.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Images/Player/Sclera.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Images/Player/DownPartWhite.png" type="Texture" id=10]
@@ -15,16 +15,12 @@
 [ext_resource path="res://Assets/Images/Player/FootPart.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Scripts/AnimationScript.gd" type="Script" id=14]
 
-[sub_resource type="PhysicsMaterial" id=35]
-friction = 0.0
-
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=1]
 
 [sub_resource type="CanvasItemMaterial" id=2]
 blend_mode = 1
 
 [sub_resource type="Animation" id=3]
-resource_name = "Idle"
 length = 1.1
 loop = true
 step = 0.05
@@ -186,10 +182,8 @@ tracks/12/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "Jump"
 
 [sub_resource type="Animation" id=5]
-resource_name = "TurnBlue"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Head/HeadCapsule:self_modulate")
@@ -265,7 +259,6 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-resource_name = "TurnGreen"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Head/HeadCapsule:self_modulate")
@@ -341,7 +334,6 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-resource_name = "TurnOrange"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Head/HeadCapsule:self_modulate")
@@ -649,10 +641,14 @@ graph_offset = Vector2( 0, 132.664 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=34]
 
-[node name="RigidBody2D" type="RigidBody2D"]
-mode = 2
-physics_material_override = SubResource( 35 )
+[node name="RigidBody2D" type="KinematicBody2D"]
 script = ExtResource( 7 )
+inertia = 10
+mass = 5.0
+friction = 1.0
+gravity = 9.8
+jumpForce = 1400
+speed = 100
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
@@ -662,17 +658,18 @@ scale = Vector2( 5.08647, 3.22054 )
 texture = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( -0.5, -0.348909 )
+position = Vector2( 0, 0.478326 )
 z_index = 5
-polygon = PoolVector2Array( 8, -4, 8, 4, 5, 7, 5, 14.3489, -4, 14.3489, -4, 7, -5, 7, -8, 4, -8, -4, -5, -7, 5, -7 )
+polygon = PoolVector2Array( 8, -4, 8, 4, 5, 7, 5, 13.5217, -4, 13.5217, -4, 7, -5, 7, -8, 4, -8, -4, -5, -7, 5, -7 )
 
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Legs" type="Node2D" parent="Body"]
 
 [node name="LLeg" type="Line2D" parent="Body/Legs"]
+position = Vector2( -0.5, 0 )
 z_index = 1
-points = PoolVector2Array( -3, 6.35109, -3, 10 )
+points = PoolVector2Array( -2.5, 7, -2.45264, 11.0621 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 6 )
@@ -681,8 +678,8 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="RLeg" type="Line2D" parent="Body/Legs"]
-position = Vector2( 6, 0 )
-points = PoolVector2Array( -3, 6.35109, -3, 10 )
+position = Vector2( 5.5, 0 )
+points = PoolVector2Array( -2.5, 7, -3.37676, 10.0993 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 6 )
@@ -694,7 +691,8 @@ end_cap_mode = 2
 
 [node name="LFoot" type="Sprite" parent="Body/Foots"]
 self_modulate = Color( 0, 0.435294, 0.698039, 1 )
-position = Vector2( -2.5, 12 )
+position = Vector2( -2.68183, 12 )
+rotation = 0.0939459
 z_index = 1
 texture = ExtResource( 11 )
 region_rect = Rect2( 21, 23, 6, 3 )
@@ -704,7 +702,8 @@ texture = ExtResource( 13 )
 
 [node name="RFoot" type="Sprite" parent="Body/Foots"]
 self_modulate = Color( 0, 0.435294, 0.698039, 1 )
-position = Vector2( 3.5, 12 )
+position = Vector2( 2.82708, 10.9872 )
+rotation = -0.000472545
 texture = ExtResource( 11 )
 region_rect = Rect2( 21, 23, 6, 3 )
 
@@ -720,7 +719,8 @@ cast_to = Vector2( 0, 12 )
 
 [node name="HeadCapsule" type="Sprite" parent="Body/Head"]
 self_modulate = Color( 0, 0.435294, 0.698039, 1 )
-position = Vector2( 0, 0.181704 )
+position = Vector2( 0, 0.483915 )
+rotation = 0.101084
 z_index = 1
 texture = ExtResource( 12 )
 region_rect = Rect2( 4, 4, 17, 15 )
@@ -764,7 +764,6 @@ anims/TurnWhite = SubResource( 9 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 14 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 15 )
 script = ExtResource( 14 )
 

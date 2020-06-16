@@ -7,7 +7,6 @@ func _ready():
 	player = $".."
 	playback = get("parameters/playback")
 	active = true
-	pass
 
 func _process(_delta):
 	if player.velocity.x == 0:

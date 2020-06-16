@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="DEY"
-run/main_scene="res://Scenes/player.tscn"
+run/main_scene="res://Scenes/TestEnviroment.tscn"
 config/icon="res://icon.png"
 
 [display]
